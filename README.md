@@ -1,0 +1,308 @@
+# Ejercicios-MongoDB
+
+1.1. Desarrollar el Proyecto
+
+A continuación, creará su propia base de datos de red social con las siguientes colecciones:
+	● Users
+	● Posts
+	      ○ Comments
+
+use redSocialDB;
+db.createCollection("users");
+db.createCollection("posts");
+
+1.2.1 INSERTAR DATOS
+
+● Insertar al menos 15 publicaciones nuevas con almenos 2 comentarios por publicación:
+
+	○ Title
+	○ Body
+	○ Username
+	○ Comments
+		  ■ Username
+		  ■ Body
+
+db.posts.insertOne([
+  {
+    title: "Title post",
+    body: "Body post",
+    username: "Federico",
+    comments: { username: "Miguel", body: "Body comment" },
+  },
+]);
+
+db.posts.insertMany([
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Daniel", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Sergio", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Alex", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Matias", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Daniela", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Sif", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Diego", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "German", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Sofia", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Elisa", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Rocio", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Eustaquio", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Euralio", body: "Body comment" },
+  },
+  {
+    title: "Title post",
+    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    username: "Federico",
+    comments: { username: "Ricardo", body: "Body comment" },
+  },
+]);
+
+
+● Insertar al menos 10 nuevos usuarios:
+
+	○ Username
+	○ Email
+	○ Age
+
+db.users.insertMany([
+  { username: "Federico", email: "federico@gmail.com", age: 34 },
+  { username: "Sofia", email: "sofia@gmail.com", age: 23 },
+  { username: "Alex", email: "alex@gmail.com", age: 26 },
+  { username: "Matias", email: "matias@gmail.com", age: 40 },
+  { username: "Daniela", email: "daniela@gmail.com", age: 27 },
+  { username: "Sif", email: "sif@gmail.com", age: 18 },
+  { username: "Miguel", email: "miguel@gmail.com", age: 32 },
+  { username: "Daniela", email: "daniela@gmail.com", age: 20 },
+  { username: "Diego", email: "diego@gmail.com", age: 33 },
+  { username: "German", email: "german@gmail.com", age: 21 },
+]);
+
+
+1.2.2 ACTUALIZAR DATOS
+ 
+● Actualizar publicaciones:
+
+	○ Actualiza todos los campos de una publicación.
+
+db.posts.updateOne(
+  { username: "Federico" },
+  {
+    $set: {
+      title: "Title post updated",
+      body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Updated!",
+      username: "Federico Updated",
+      comments: { username: "Miguel Updated", body: "Body comment Updated" },
+    },
+  }
+);
+
+	○ Cambiar el body de una publicación.
+
+db.posts.updateOne(
+  { username: "Federico" },
+  {
+    $set: {
+      body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Body Updated!",
+    },
+  }
+);
+
+	○ Actualizar comentarios:
+
+		■ Actualiza el comentario de una publicación.
+
+db.posts.updateOne(
+  { username: "Federico" },
+  {
+    $set: {
+      comments: { body: "Comment of post super Updated" },
+    },
+  }
+);
+
+
+● Actualizar usuarios:
+
+	○ Actualiza todos los campos de un usuario
+
+db.users.updateOne(
+  { username: "Sofia" },
+  {
+    $set: {
+      username: "Euralio",
+      email: "euralio@gmail.com",
+      age: "95",
+    },
+  }
+);
+
+	○ Cambiar el email de dos usuarios es decir hacer la query dos veces.
+
+db.users.updateOne(
+  { username: "Miguel" },
+  {
+    $set: {
+      email: "miguel_updated@gmail.com",
+    },
+  }
+);
+
+db.users.updateOne(
+  { username: "Daniela" },
+  {
+    $set: {
+      email: "daniel_updated@gmail.com",
+    },
+  }
+);
+
+
+	○ Aumenta en 5 años la edad de un usuario
+
+db.users.updateOne(
+  { username: "Diego" },
+  {
+    $inc: {
+      age: 5,
+    },
+  }
+);
+
+
+1.2.3 OBTENER DATOS
+
+● Seleccionar todas las publicaciones
+
+db.posts.find();
+
+● Selecciona las publicaciones que coincidan con el username indicado
+
+db.posts.find({
+  username: "Euralio",
+});
+
+● Seleccione todos los usuarios con una edad mayor a 20
+
+db.users.find({ age: { $gt: 20 } });
+
+● Seleccione todos los usuarios con una edad inferior a 23
+
+db.users.find({ age: { $lt: 23 } });
+
+● Seleccione todos los usuarios que tengan una edad entre 25 y 30 años
+
+db.users.find({ $and: [{ age: { $gt: 25 } }, { age: { $lt: 30 } }] });
+
+● Muestra los usuarios de edad menor a mayor y viceversa
+
+db.users.find().sort({ age: 1 });
+
+db.users.find().sort({ age: -1 });
+
+● Seleccione el número total de usuarios
+
+db.users.count();
+
+● Seleccione todas las publicaciones de la siguiente manera: Título de la publicación: "título de las publicaciones"
+
+db.posts.find().forEach((doc) => {
+  print("Titulo de la publicación: " + doc.title);
+});
+
+● Selecciona solo 2 usuarios
+
+db.users.find({ $or: [{ username: "Sofia" }, { username: "German" }] });
+
+● Busca por title 2 publicaciones
+
+db.posts.find({
+  title: "Title post",
+});
+
+db.posts.find({
+  title: "Title post updated",
+});
+
+
+1.2.4 BORRAR DATOS
+
+● Elimina a todos los usuarios con una edad mayor a 30
+
+db.users.deleteMany({ age: { $gt: 30 } });
+
+
+1.3 Extra
+
+● Seleccione el número total de publicaciones que tienen más de un comentario
+
+● Seleccione la última publicación creada
+
+db.posts.find().limit(1).sort({ _id: -1 });
+
+● Selecciona 5 publicaciones y que sean las últimas creadas
+
+db.posts.find().limit(5).sort({ _id: -1 });
+
+● Elimina todas las publicaciones que tengan más de un comentario
+
